@@ -1,11 +1,26 @@
 
 <div>
 
-  <nav>
-    <router-link to="/">Home</router-link>
-    <router-link to="/watch-list">Watch List</router-link>
-  </nav>
-
+  <NavigationMenu />
+  <div class="genre-dropdown">
+    <button @mouseover="showGenreList" @mouseleave="hideGenreList">
+      Genres
+    </button>
+    <ul
+      v-show="isGenreListVisible"
+      class="dropdown-list"
+      @mouseover="showGenreList"
+      @mouseleave="hideGenreList"
+    >
+      <li
+        v-for="genre in genres"
+        :key="genre"
+        @click="scrollToGenre(genre)"
+      >
+        {{ genre }}
+      </li>
+    </ul>
+  </div>
   <h1>TV Shows Dashboard</h1>
   <input
     type="text"
@@ -18,6 +33,7 @@
     <div
       v-for="(shows, genre) in showsByGenre"
       :key="genre"
+      :data-genre="genre"
       class="genre-group"
     >
       <h2>{{ genre }}</h2>
@@ -27,7 +43,6 @@
             v-for="show in shows"
             :key="show.id"
             :show="show"
-            @click="selectShow(show.id)"
 
           />
       </div>

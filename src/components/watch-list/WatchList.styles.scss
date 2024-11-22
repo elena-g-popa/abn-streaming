@@ -70,4 +70,25 @@
       }
     }
   }
+
+  .horizontal-list {
+    display: flex;
+    gap: 16px; /* Spacing between cards */
+    overflow-x: auto; /* Horizontal scrolling */
+    padding: 16px 0; /* Top and bottom padding */
+  }
+  
+  .horizontal-list::-webkit-scrollbar {
+    height: 8px; /* Height of horizontal scrollbar */
+  }
+  
+  .horizontal-list::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Thumb color */
+    border-radius: 4px;
+  }
+  
+  .horizontal-list::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Track color */
+  }
+  
   

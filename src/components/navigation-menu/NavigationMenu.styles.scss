@@ -1,0 +1,21 @@
+
+@use "../../styles";
+
+nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+
+  .nav-link {
+    color: styles.$white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: styles.$bright-pink; 
+      background-color: styles.$dark-blue; }
+  }
+}

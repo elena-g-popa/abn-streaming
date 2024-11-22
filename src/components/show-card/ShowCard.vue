@@ -5,6 +5,7 @@ import "./ShowCard.styles.scss";
 import { computed } from "vue";
 import { defineProps } from "vue";
 import { useTvShowStore } from "../../store/tvShowStore";
+import { useRouter } from "vue-router";
 
 const props = defineProps({
   show: {
@@ -14,6 +15,7 @@ const props = defineProps({
 });
 
 const store = useTvShowStore();
+const router = useRouter();
 
 const isInWatchList = computed(() => {
   return store.watchList.some((show) => show.id === props.show.id);
@@ -25,5 +27,16 @@ const toggleWatchList = () => {
   } else {
     store.addToWatchList(props.show);
   }
+};
+
+const handleCardClick = () => {
+  store
+    .fetchShowById(props.show.id)
+    .then(() => {
+      router.push(`/show/${props.show.id}`);
+    })
+    .catch((error) => {
+      console.error("Error selecting show:", error);
+    });
 };
 </script>

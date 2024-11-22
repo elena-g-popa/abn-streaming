@@ -1,4 +1,6 @@
 <div>
+  <NavigationMenu />
+
     <h1>Your watch list</h1>
 
     <p v-if="watchListShows.length === 0">
@@ -7,13 +9,14 @@
 
     <div v-if="watchListShows.length === 0">
       <h2>Recommended Shows</h2>
-      <div class="recommended-shows">
+
+      <div class="recommended-shows horizontal-list">
         <ShowCard v-for="show in recommendedShows" :key="show.id" :show="show" />
       </div>
     </div>
 
     <div v-else>
-      <div class="watch-list-shows">
+      <div class="watch-list-shows horizontal-list">
         <ShowCard v-for="show in watchListShows" :key="show.id" :show="show" />
       </div>
     </div>

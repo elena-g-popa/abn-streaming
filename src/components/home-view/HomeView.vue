@@ -3,7 +3,6 @@
 <script setup>
 import { onMounted, computed, ref } from "vue";
 import { useTvShowStore } from "../../store/tvShowStore";
-import { useRouter } from "vue-router";
 
 import {
   sortByRating,
@@ -14,14 +13,20 @@ import {
 import "./HomeView.styles.scss";
 
 import ShowCard from "../show-card/ShowCard.vue";
+import NavigationMenu from "../navigation-menu/NavigationMenu.vue";
 
-const store = useTvShowStore();
+import { useRouter } from "vue-router";
+
 const router = useRouter();
+const store = useTvShowStore();
 const searchQuery = ref("");
+const isGenreListVisible = ref(false);
 
 onMounted(() => {
   store.fetchShows();
 });
+
+const genres = store.genres;
 
 const showsByGenre = computed(() => {
   const query = searchQuery.value.toLowerCase();
@@ -69,6 +74,26 @@ const handleSearch = () => {
     store.searchShows(searchQuery.value.trim());
   } else {
     store.fetchShows();
+  }
+};
+
+const showGenreList = () => {
+  isGenreListVisible.value = true;
+};
+
+const hideGenreList = () => {
+  isGenreListVisible.value = false;
+};
+
+// Scroll to the selected genre section
+const scrollToGenre = (genre) => {
+  const genreElement = document.querySelector(`[data-genre="${genre}"]`);
+  if (genreElement) {
+    genreElement.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+    isGenreListVisible.value = false; // Hide the list after selecting
   }
 };
 </script>

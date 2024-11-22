@@ -1,4 +1,4 @@
-<div class="show-card">
+<div class="show-card" @click="handleCardClick">
   <img :src="show.image?.medium" :alt="show.name" />
   <p>{{ show.name }}</p>
   <small>Rating: {{ show.rating.average || "N/A" }}</small>
