@@ -1,0 +1,11 @@
+<div v-if="show">
+    <h1>{{ show.name }}</h1>
+    <img :src="show.image?.original" :alt="show.name" />
+    <p v-html="show.summary"></p>
+    <ul>
+      <li><strong>Genre:</strong> {{ show.genres.join(', ') }}</li>
+      <li><strong>Rating:</strong> {{ show.rating.average || 'N/A' }}</li>
+      <li><strong>Language:</strong> {{ show.language }}</li>
+    </ul>
+</div>
+<p v-else>Loading...</p>

@@ -1,0 +1,36 @@
+.genre-group {
+    margin-bottom: 2rem;
+  
+    h2 {
+      font-size: 1.5rem;
+      color: #333;
+    }
+  }
+  
+  .horizontal-list {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+  
+    .show-card {
+      flex-shrink: 0;
+      width: 150px;
+      cursor: pointer;
+      text-align: center;
+  
+      img {
+        width: 100%;
+        border-radius: 8px;
+      }
+  
+      p {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+  
+      small {
+        color: #888;
+      }
+    }
+  }
+  

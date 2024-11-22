@@ -1,0 +1,26 @@
+
+<div>
+  <h1>TV Shows Dashboard</h1>
+  <div v-if="Object.keys(showsByGenre).length">
+    <div
+      v-for="(shows, genre) in showsByGenre"
+      :key="genre"
+      class="genre-group"
+    >
+      <h2>{{ genre }}</h2>
+      <div class="horizontal-list">
+        <div
+          v-for="show in shows"
+          :key="show.id"
+          class="show-card"
+          @click="selectShow(show.id)"
+        >
+          <img :src="show.image?.medium" :alt="show.name" />
+          <p>{{ show.name }}</p>
+          <small>Rating: {{ show.rating.average || "N/A" }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p v-else>Loading...</p>
+</div>
