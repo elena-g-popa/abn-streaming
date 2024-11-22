@@ -6,6 +6,8 @@ export const useTvShowStore = defineStore('tvShowStore', {
     genres: [],
     shows: [],
     selectedShow: null,
+    recommendedShows: [],
+    watchList: [],
   }),
   actions: {
     async fetchShows() {
@@ -43,5 +45,18 @@ export const useTvShowStore = defineStore('tvShowStore', {
     selectShow(showId) {
       this.selectedShow = this.shows.find(show => show.id === showId);
     },
+    setRecommendedShows(shows) {
+      this.recommendedShows = shows;
+    },
+
+    addToWatchList(show) {
+        if (!this.watchList.find((s) => s.id === show.id)) {
+          this.watchList.push(show); 
+        }
+      },
+  
+      removeFromWatchList(showId) {
+        this.watchList = this.watchList.filter((show) => show.id !== showId); 
+      }
   },
 });

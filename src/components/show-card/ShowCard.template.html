@@ -1,0 +1,9 @@
+<div class="show-card">
+  <img :src="show.image?.medium" :alt="show.name" />
+  <p>{{ show.name }}</p>
+  <small>Rating: {{ show.rating.average || "N/A" }}</small>
+
+  <button @click.stop="toggleWatchList">
+    {{ isInWatchList ? "Remove from WatchList" : "Add to WatchList" }}
+  </button>
+</div>

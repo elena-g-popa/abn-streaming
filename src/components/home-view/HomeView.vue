@@ -13,6 +13,8 @@ import {
 } from "../../utils/utils";
 import "./HomeView.styles.scss";
 
+import ShowCard from "../show-card/ShowCard.vue";
+
 const store = useTvShowStore();
 const router = useRouter();
 const searchQuery = ref("");
@@ -46,6 +48,7 @@ const showsByGenre = computed(() => {
   });
 
   const deduplicatedRecommended = deduplicateShows(recommendedShows);
+  store.setRecommendedShows(deduplicatedRecommended);
 
   return createSortedGroups(groups, deduplicatedRecommended);
 });

@@ -1,5 +1,11 @@
 
 <div>
+
+  <nav>
+    <router-link to="/">Home</router-link>
+    <router-link to="/watch-list">Watch List</router-link>
+  </nav>
+
   <h1>TV Shows Dashboard</h1>
   <input
     type="text"
@@ -16,16 +22,14 @@
     >
       <h2>{{ genre }}</h2>
       <div class="horizontal-list">
-        <div
-          v-for="show in shows"
-          :key="show.id"
-          class="show-card"
-          @click="selectShow(show.id)"
-        >
-          <img :src="show.image?.medium" :alt="show.name" />
-          <p>{{ show.name }}</p>
-          <small>Rating: {{ show.rating.average || "N/A" }}</small>
-        </div>
+        
+          <ShowCard
+            v-for="show in shows"
+            :key="show.id"
+            :show="show"
+            @click="selectShow(show.id)"
+
+          />
       </div>
     </div>
   </div>
