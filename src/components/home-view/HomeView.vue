@@ -1,24 +1,53 @@
 <template src="./HomeView.template.html"></template>
 
 <script setup>
-import { onMounted, computed } from "vue";
+import { onMounted, computed, ref } from "vue";
 import { useTvShowStore } from "../../store/tvShowStore";
 import { useRouter } from "vue-router";
+
+import {
+  sortByRating,
+  filterShows,
+  createSortedGroups,
+  deduplicateShows,
+} from "../../utils/utils";
 import "./HomeView.styles.scss";
 
 const store = useTvShowStore();
 const router = useRouter();
+const searchQuery = ref("");
 
 onMounted(() => {
   store.fetchShows();
 });
 
 const showsByGenre = computed(() => {
+  const query = searchQuery.value.toLowerCase();
   const groups = {};
+
+  const recommendedShows = [];
+  const seenShows = new Set();
+
   store.genres.forEach((genre) => {
-    groups[genre] = store.shows.filter((show) => show.genres.includes(genre));
+    const filteredShows = filterShows(store.shows, query, genre).sort(
+      sortByRating
+    );
+
+    if (filteredShows.length > 0) {
+      groups[genre] = filteredShows;
+
+      const topShow = filteredShows[0];
+
+      if (!seenShows.has(topShow.id)) {
+        recommendedShows.push(topShow);
+        seenShows.add(topShow.id);
+      }
+    }
   });
-  return groups;
+
+  const deduplicatedRecommended = deduplicateShows(recommendedShows);
+
+  return createSortedGroups(groups, deduplicatedRecommended);
 });
 
 const selectShow = (showId) => {
@@ -30,5 +59,13 @@ const selectShow = (showId) => {
     .catch((error) => {
       console.error("Error selecting show:", error);
     });
+};
+
+const handleSearch = () => {
+  if (searchQuery.value.trim()) {
+    store.searchShows(searchQuery.value.trim());
+  } else {
+    store.fetchShows();
+  }
 };
 </script>

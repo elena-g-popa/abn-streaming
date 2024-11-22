@@ -25,6 +25,14 @@ export const useTvShowStore = defineStore('tvShowStore', {
           console.error('Error fetching show details:', error);
         }
       },
+      async searchShows(query) {
+        try {
+          const response = await axios.get(`https://api.tvmaze.com/search/shows?q=${query}`);
+          this.shows = response.data.map((result) => result.show); 
+        } catch (error) {
+          console.error("Error searching shows:", error);
+        }
+      },
     extractGenres() {
       const genreSet = new Set();
       this.shows.forEach(show => {
