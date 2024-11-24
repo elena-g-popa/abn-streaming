@@ -1,4 +1,5 @@
 
-<button @click.stop="toggleWatchList">
-    {{ isInWatchList ? "- WatchList" : " + WatchList" }}
+<button @click.stop="toggleWatchList" class="watch-list-button">
+    <span>{{ isInWatchList ? "Remove from" : "Add to" }}</span>
+    <img src="../../assets/tv-white.png" alt="watch list icon" />
   </button>
