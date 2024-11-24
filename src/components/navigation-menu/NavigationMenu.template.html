@@ -1,6 +1,18 @@
-<div>
-  <nav>
-    <router-link to="/">Home</router-link>
-    <router-link to="/watch-list">Watch List</router-link>
+  <nav class="simple-nav">
+    <router-link
+      to="/"
+      class="nav-item"
+      :class="{ active: $route.path === '/' }"
+    >
+      <img src="../../assets/home.png" alt="Home" class="nav-icon" />
+      <span class="nav-text">Home</span>
+    </router-link>
+    <router-link
+      to="/watch-list"
+      class="nav-item"
+      :class="{ active: $route.path === '/watch-list' }"
+    >
+      <img src="../../assets/tv.png" alt="Watch List" class="nav-icon" />
+      <span class="nav-text">Watch List</span>
+    </router-link>
   </nav>
-</div>

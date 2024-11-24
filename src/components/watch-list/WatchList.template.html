@@ -1,4 +1,5 @@
-<div>
+<div class="hero-container">
+  <div class="hero-container-content">
   <NavigationMenu />
 
     <h1>Your watch list</h1>
@@ -6,6 +7,9 @@
     <p v-if="watchListShows.length === 0">
       You haven't added any shows yet. Here are some that might interest you:
     </p>
+    </div>
+  </div>
+  <div class="body-container">
 
     <div v-if="watchListShows.length === 0">
       <h2>Recommended Shows</h2>

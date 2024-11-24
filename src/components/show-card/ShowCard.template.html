@@ -1,9 +1,9 @@
 <div class="show-card" @click="handleCardClick">
-  <img :src="show.image?.medium" :alt="show.name" />
-  <p>{{ show.name }}</p>
-  <small>Rating: {{ show.rating.average || "N/A" }}</small>
+  <img class="show-image" :src="show.image?.medium" :alt="show.name" />
+  <p class="show-title">{{ show.name }}</p>
+  <small class="show-rating">Rating: {{ show.rating.average || "N/A" }}</small>
 
   <button @click.stop="toggleWatchList">
-    {{ isInWatchList ? "Remove from WatchList" : "Add to WatchList" }}
+    {{ isInWatchList ? "- WatchList" : " + WatchList" }}
   </button>
 </div>

@@ -6,6 +6,7 @@ import { useRoute } from "vue-router";
 import { useTvShowStore } from "../../store/tvShowStore";
 
 import "./ShowDetails.styles.scss";
+import NavigationMenu from "../navigation-menu/NavigationMenu.vue";
 
 const route = useRoute();
 const store = useTvShowStore();

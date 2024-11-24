@@ -1,6 +1,6 @@
 
 /* Colors */
-$dark-blue: #00224D;
+$dark-blue: #0c0136;
 $dark-purple: #5D0E41;
 $bright-pink: #FF204E;
 $accent-purple: #A0153E;
@@ -14,10 +14,16 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+  background-attachment: fixed;
 }
 
 h1, h2, p, small {
   color: $white;
+}
+
+h1{
+  margin: 0;
+  padding-bottom: 12px;
 }
 
 a, router-link {
@@ -27,6 +33,11 @@ a, router-link {
   &:hover {
     color: $bright-pink;
   }
+}
+p {
+  margin: 0;
+  line-height: 1rem;
+
 }
 
 button {
@@ -40,7 +51,6 @@ button {
 
   &:hover {
     background-color: $accent-purple;
-    transform: translateY(-3px);
   }
 
   &:focus {
@@ -78,28 +88,31 @@ button {
   gap: 1rem;
   overflow-x: auto;
   padding: 16px 0;
-
-  &::-webkit-scrollbar {
-    height: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-  }
 }
 
-/* Shadows and Card Hover */
-.card-hover {
-  box-shadow: 0 4px 12px $shadow-color;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+/* containers */
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+.hero-container {
+  background-color: black;
+  position: sticky; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  z-index: 1000; 
+  color: $white; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+
+  .hero-container-content {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 20px;
   }
+
+}
+
+
+.body-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 20px;
 }

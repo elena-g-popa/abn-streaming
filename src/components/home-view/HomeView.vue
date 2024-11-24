@@ -1,7 +1,8 @@
 <template src="./HomeView.template.html"></template>
 
 <script setup>
-import { onMounted, computed, ref } from "vue";
+import { onMounted, computed, ref, onBeforeUnmount } from "vue";
+
 import { useTvShowStore } from "../../store/tvShowStore";
 
 import {
@@ -21,12 +22,18 @@ const router = useRouter();
 const store = useTvShowStore();
 const searchQuery = ref("");
 const isGenreListVisible = ref(false);
+const dropdownRef = ref(null);
 
 onMounted(() => {
   store.fetchShows();
+  document.addEventListener("click", handleClickOutside);
 });
 
-const genres = computed(() => store.getGenres);
+onBeforeUnmount(() => {
+  document.removeEventListener("click", handleClickOutside);
+});
+
+const genres = computed(() => store.getGenres.sort());
 
 const showsByGenre = computed(() => {
   const query = searchQuery.value.toLowerCase();
@@ -77,23 +84,38 @@ const handleSearch = () => {
   }
 };
 
-const showGenreList = () => {
-  isGenreListVisible.value = true;
+const scrollToGenre = (genre) => {
+  const genreElement = document.querySelector(`[data-genre="${genre}"]`);
+  if (genreElement) {
+    const topOffset = 250;
+    const elementPosition =
+      genreElement.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - topOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+    isGenreListVisible.value = false;
+  }
+};
+
+const toggleGenreList = () => {
+  isGenreListVisible.value = !isGenreListVisible.value;
 };
 
 const hideGenreList = () => {
   isGenreListVisible.value = false;
 };
 
-// Scroll to the selected genre section
-const scrollToGenre = (genre) => {
-  const genreElement = document.querySelector(`[data-genre="${genre}"]`);
-  if (genreElement) {
-    genreElement.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-    isGenreListVisible.value = false; // Hide the list after selecting
+const handleGenreClick = (genre) => {
+  scrollToGenre(genre);
+  hideGenreList();
+};
+
+const handleClickOutside = (event) => {
+  if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
+    hideGenreList();
   }
 };
 </script>
