@@ -3,7 +3,6 @@
   <p class="show-title">{{ show.name }}</p>
   <small class="show-rating">Rating: {{ show.rating.average || "N/A" }}</small>
 
-  <button @click.stop="toggleWatchList">
-    {{ isInWatchList ? "- WatchList" : " + WatchList" }}
-  </button>
+  <WatchListButton 
+  :show="show"/>
 </div>

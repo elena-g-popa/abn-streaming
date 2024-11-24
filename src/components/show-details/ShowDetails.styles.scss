@@ -1,0 +1,78 @@
+@use "../../styles";
+
+.ul-reset {
+  padding: 0;
+}
+
+.show-detail-card {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 28px;
+  border-radius: 16px;
+}
+
+.show-detail-image {
+  max-width: 200px;
+  margin-right: 1rem;
+}
+
+.show-deatil-info {
+  flex: 1;
+}
+
+.episodes-container {
+  margin-top: 2rem;
+}
+
+h3 {
+  margin-top: 1.5rem;
+}
+
+.episode-item {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  padding: 24px 0;
+  border-bottom: styles.$white 1px solid;
+
+}
+
+.episode-img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+}
+
+.episode-details {
+  flex: 3;
+
+}
+
+.float-right {
+  float: right;
+  width: auto;
+  }
+
+@media (max-width: 768px) {
+  .show-detail-card,
+  .episode-item {
+    flex-direction: column;
+  }
+
+  .show-detail-image,
+  .episode-img {
+    max-width: 100%;
+    margin: 0;
+    height: auto;
+  }
+
+
+  .float-right {
+    float: none;
+    width: 100%;
+  }
+}

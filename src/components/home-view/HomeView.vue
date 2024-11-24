@@ -87,7 +87,7 @@ const handleSearch = () => {
 const scrollToGenre = (genre) => {
   const genreElement = document.querySelector(`[data-genre="${genre}"]`);
   if (genreElement) {
-    const topOffset = 250;
+    const topOffset = 290;
     const elementPosition =
       genreElement.getBoundingClientRect().top + window.scrollY;
     const offsetPosition = elementPosition - topOffset;

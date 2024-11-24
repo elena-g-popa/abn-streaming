@@ -6,15 +6,42 @@
 
 <div class="body-container">
 
-  <div v-if="show">
-      <h1>{{ show.name }}</h1>
-      <img :src="show.image?.original" :alt="show.name" />
-      <p v-html="show.summary"></p>
-      <ul>
-        <li><strong>Genre:</strong> {{ show.genres.join(', ') }}</li>
-        <li><strong>Rating:</strong> {{ show.rating.average || 'N/A' }}</li>
-        <li><strong>Language:</strong> {{ show.language }}</li>
-      </ul>
+  <div class="show-details-container" v-if="show">
+    <div class="show-detail-card">
+      <img :src="show.image?.original" :alt="show.name" class="show-detail-image" />
+            <div class="show-detail-info">
+        <h1>{{ show.name }}</h1>
+        <p v-html="show.summary"></p>
+        <ul>
+          <li><strong>Genre:</strong> {{ show.genres.join(', ') }}</li>
+          <li><strong>Rating:</strong> {{ show.rating.average || 'N/A' }}</li>
+          <li><strong>Language:</strong> {{ show.language }}</li>
+        </ul>
+
+        <WatchListButton 
+        class="float-right"
+        :show="show"/>
+      </div>
+    </div>
+
+    <div class="episodes-container">
+      <h2>Episodes</h2>
+      
+      <div v-for="(seasonEpisodes, season) in groupedEpisodes" :key="season">
+        <h3>Season {{ season }}</h3>
+        <ul class="ul-reset">
+          <li v-for="episode in seasonEpisodes" :key="episode.id" class="episode-item">
+            <div class="episode-image">
+              <img :src="episode.image?.medium" :alt="episode.name" class="episode-img" />
+            </div>
+            <div class="episode-details">
+              <h4><strong>Episode {{ episode.number }}:</strong> {{ episode.name }}</h4>
+              <p>{{ sanitizeHtml(episode.summary) }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <p v-else>Loading...</p>
+  <p v-else>Loading show details...</p>
 </div>

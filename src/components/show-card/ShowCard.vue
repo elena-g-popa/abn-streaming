@@ -7,6 +7,8 @@ import { defineProps } from "vue";
 import { useTvShowStore } from "../../store/tvShowStore";
 import { useRouter } from "vue-router";
 
+import WatchListButton from "../watch-list-button/WatchListButton.vue";
+
 const props = defineProps({
   show: {
     type: Object,
@@ -16,18 +18,6 @@ const props = defineProps({
 
 const store = useTvShowStore();
 const router = useRouter();
-
-const isInWatchList = computed(() => {
-  return store.watchList.some((show) => show.id === props.show.id);
-});
-
-const toggleWatchList = () => {
-  if (isInWatchList.value) {
-    store.removeFromWatchList(props.show.id);
-  } else {
-    store.addToWatchList(props.show);
-  }
-};
 
 const handleCardClick = () => {
   store

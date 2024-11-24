@@ -8,6 +8,7 @@ export const useTvShowStore = defineStore('tvShowStore', {
     selectedShow: null,
     recommendedShows: [],
     watchList: [],
+    showEpisodes: [],
   }),
   actions: {
     async fetchShows() {
@@ -33,6 +34,14 @@ export const useTvShowStore = defineStore('tvShowStore', {
         this.shows = response.data.map((result) => result.show); 
       } catch (error) {
         console.error("Error searching shows:", error);
+      }
+    },
+    async fetchShowEpisodes(showId) {
+      try {
+        const response = await axios.get(`https://api.tvmaze.com/shows/${showId}/episodes`);
+        this.showEpisodes = response.data; 
+      } catch (error) {
+        console.error('Error fetching show episodes:', error);
       }
     },
     selectShow(showId) {
