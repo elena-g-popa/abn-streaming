@@ -1,6 +1,6 @@
 <template src="./WatchList.template.html"></template>
   
-  <script setup>
+<script setup>
 import { useTvShowStore } from "../../store/tvShowStore";
 import { computed } from "vue";
 

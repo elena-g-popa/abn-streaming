@@ -33,7 +33,7 @@ onBeforeUnmount(() => {
   document.removeEventListener("click", handleClickOutside);
 });
 
-const genres = computed(() => store.getGenres.sort());
+const genres = computed(() => store.genres.sort());
 
 const showsByGenre = computed(() => {
   const query = searchQuery.value.toLowerCase();
@@ -109,6 +109,7 @@ const hideGenreList = () => {
 };
 
 const handleGenreClick = (genre) => {
+  console.log("handleGenreClick called with:", genre);
   scrollToGenre(genre);
   hideGenreList();
 };

@@ -79,6 +79,43 @@ describe("fetchShowById", () => {
       });
 });
 
+describe("fetchShowEpisodes", () => {
+  beforeEach(() => {
+    setActivePinia(createPinia()); // Set up a fresh Pinia instance for each test
+    jest.spyOn(console, "error").mockImplementation(() => {}); // Silence console.error
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks(); // Restore mocked functions
+  });
+
+  it("should populate showEpisodes with fetched data", async () => {
+    const mockEpisodes = [
+      { id: 1, name: "Episode 1", season: 1, number: 1 },
+      { id: 2, name: "Episode 2", season: 1, number: 2 },
+    ];
+    axios.get.mockResolvedValue({ data: mockEpisodes });
+
+    const store = useTvShowStore();
+
+    await store.fetchShowEpisodes(1);
+
+    expect(store.showEpisodes).toEqual(mockEpisodes);
+    expect(axios.get).toHaveBeenCalledWith("https://api.tvmaze.com/shows/1/episodes");
+  });
+
+  it("should handle errors when fetching fails", async () => {
+    const store = useTvShowStore();
+    const mockError = new Error("Network Error");
+    axios.get.mockRejectedValueOnce(mockError);
+
+    await store.fetchShowEpisodes(1);
+
+    expect(store.showEpisodes).toEqual([]); // Default empty state
+    expect(console.error).toHaveBeenCalledWith("Error fetching show episodes:", mockError);
+  });
+});
+
 describe("searchShows", () => {
     beforeEach(() => {
         setActivePinia(createPinia());
