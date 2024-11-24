@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1732438986971" clover="3.2.0">
+  <project timestamp="1732438986971" name="All files">
+    <metrics statements="50" coveredstatements="50" conditionals="16" coveredconditionals="16" methods="24" coveredmethods="24" elements="90" coveredelements="90" complexity="0" loc="50" ncloc="50" packages="2" files="2" classes="2"/>
+    <package name="store">
+      <metrics statements="24" coveredstatements="24" conditionals="2" coveredconditionals="2" methods="15" coveredmethods="15"/>
+      <file name="tvShowStore.js" path="/Users/elenapopa/Documents/elena/abn-streaming/src/store/tvShowStore.js">
+        <metrics statements="24" coveredstatements="24" conditionals="2" coveredconditionals="2" methods="15" coveredmethods="15"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="10" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="46" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="52" count="3" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="59" count="3" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="utils">
+      <metrics statements="26" coveredstatements="26" conditionals="14" coveredconditionals="14" methods="9" coveredmethods="9"/>
+      <file name="utils.js" path="/Users/elenapopa/Documents/elena/abn-streaming/src/utils/utils.js">
+        <metrics statements="26" coveredstatements="26" conditionals="14" coveredconditionals="14" methods="9" coveredmethods="9"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="3" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="20" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="4" type="stmt"/>
+        <line num="9" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="35" count="3" type="stmt"/>
+        <line num="36" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="40" count="4" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

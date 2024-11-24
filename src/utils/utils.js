@@ -6,8 +6,8 @@ export const sortByRating = (a, b) => {
 
 export const filterShows = (shows, query, genre) => {
   return shows.filter((show) => {
-    const nameMatch = query === "" || show.name.toLowerCase().includes(query);
-    const genreMatch = show.genres.includes(genre);
+    const nameMatch = query === "" || show.name.toLowerCase().includes(query.toLowerCase());
+    const genreMatch = genre === "" || show.genres.includes(genre);
     return nameMatch && genreMatch;
   });
 };

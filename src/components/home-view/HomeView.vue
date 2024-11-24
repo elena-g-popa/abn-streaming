@@ -26,7 +26,7 @@ onMounted(() => {
   store.fetchShows();
 });
 
-const genres = store.genres;
+const genres = computed(() => store.getGenres);
 
 const showsByGenre = computed(() => {
   const query = searchQuery.value.toLowerCase();
