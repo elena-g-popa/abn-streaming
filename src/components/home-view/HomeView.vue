@@ -109,7 +109,6 @@ const hideGenreList = () => {
 };
 
 const handleGenreClick = (genre) => {
-  console.log("handleGenreClick called with:", genre);
   scrollToGenre(genre);
   hideGenreList();
 };

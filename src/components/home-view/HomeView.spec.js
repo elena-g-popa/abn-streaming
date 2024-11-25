@@ -113,8 +113,6 @@ describe("HomeView.vue", () => {
       expect(deduplicateShows).toHaveBeenCalled();
       expect(createSortedGroups).toHaveBeenCalled();
 
-      console.log(showsByGenre.recommendedShows)
-
       expect(showsByGenre).toEqual({"groups": {"Comedy": [{"genres": ["Comedy", "Drama"], "id": 2, "name": "Show 2", "rating": 7}], "Drama": [{"genres": ["Drama"], "id": 1, "name": "Show 1", "rating": 8}, {"genres": ["Comedy", "Drama"], "id": 2, "name": "Show 2", "rating": 7}]}, "recommendedShows": [{"genres": ["Comedy", "Drama"], "id": 2, "name": "Show 2", "rating": 7}, {"genres": ["Drama"], "id": 1, "name": "Show 1", "rating": 8}]});
 
     });

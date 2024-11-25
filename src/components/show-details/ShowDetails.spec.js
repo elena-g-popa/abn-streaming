@@ -95,7 +95,6 @@ describe("ShowDetails.vue", () => {
 
     const newShow = { id: 2, name: "Show 2", genres: ["Comedy", "Drama"], rating: 7, episode:{summary: 'test'} };
     mockStore.selectedShow = newShow;
-    console.log(mockStore.selectedShow)
     await wrapper.vm.$nextTick(); 
 
     expect(wrapper.vm.show).toEqual(newShow);
