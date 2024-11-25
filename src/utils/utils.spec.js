@@ -10,7 +10,6 @@ describe('sortByRating', () => {
 
     const sortedShows = shows.sort(sortByRating);
 
-    // Assert that the shows are sorted correctly by rating in descending order
     expect(sortedShows[0].name).toBe('Show B');
     expect(sortedShows[1].name).toBe('Show C');
     expect(sortedShows[2].name).toBe('Show A');
@@ -19,13 +18,12 @@ describe('sortByRating', () => {
   it('should handle shows without a rating by treating them as 0', () => {
     const shows = [
       { rating: { average: 7.5 }, name: 'Show A' },
-      { rating: {}, name: 'Show B' }, // Show B has no rating
+      { rating: {}, name: 'Show B' }, 
       { rating: { average: 9.1 }, name: 'Show C' },
     ];
 
     const sortedShows = shows.sort(sortByRating);
 
-    // Show B should be treated as having a rating of 0
     expect(sortedShows[0].name).toBe('Show C');
     expect(sortedShows[1].name).toBe('Show A');
     expect(sortedShows[2].name).toBe('Show B');
@@ -35,7 +33,6 @@ describe('sortByRating', () => {
     const shows = [];
     const sortedShows = shows.sort(sortByRating);
 
-    // The sorted array should still be empty
     expect(sortedShows).toEqual([]);
   });
 
@@ -48,7 +45,6 @@ describe('sortByRating', () => {
 
     const sortedShows = shows.sort(sortByRating);
 
-    // Show A (no rating) should come last
     expect(sortedShows[0].name).toBe('Show B');
     expect(sortedShows[1].name).toBe('Show C');
     expect(sortedShows[2].name).toBe('Show A');

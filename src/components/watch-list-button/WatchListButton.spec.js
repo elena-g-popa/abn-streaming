@@ -8,18 +8,18 @@ jest.mock("@/store/tvShowStore", () => ({
 }));
 
 describe("WatchListButton.vue", () => {
-  let store;
+  let mockStore;
   const mockShow = { id: 1, name: "Test Show" };
 
   beforeEach(() => {
     setActivePinia(createPinia());
-    store = {
+    mockStore = {
       watchList: [],
       addToWatchList: jest.fn(),
       removeFromWatchList: jest.fn(),
     };
 
-    useTvShowStore.mockReturnValue(store);
+    useTvShowStore.mockReturnValue(mockStore);
   });
 
   it("renders correctly when the show is not in the watch list", () => {
@@ -31,7 +31,7 @@ describe("WatchListButton.vue", () => {
   });
 
   it("renders correctly when the show is in the watch list", () => {
-    store.watchList = [mockShow];
+    mockStore.watchList = [mockShow];
 
     const wrapper = mount(WatchListButton, {
       props: { show: mockShow },
@@ -41,7 +41,7 @@ describe("WatchListButton.vue", () => {
   });
 
   it("calls addToWatchList when the show is not in the watch list", async () => {
-    store.watchList = [];
+    mockStore.watchList = [];
 
     const wrapper = mount(WatchListButton, {
       props: { show: mockShow },
@@ -50,11 +50,11 @@ describe("WatchListButton.vue", () => {
     const button = wrapper.find("button"); 
     await button.trigger("click");
 
-    expect(store.addToWatchList).toHaveBeenCalledWith(mockShow);
+    expect(mockStore.addToWatchList).toHaveBeenCalledWith(mockShow);
   });
 
   it("calls removeFromWatchList when the show is already in the watch list", async () => {
-    store.watchList = [mockShow];
+    mockStore.watchList = [mockShow];
 
     const wrapper = mount(WatchListButton, {
       props: { show: mockShow },
@@ -63,6 +63,6 @@ describe("WatchListButton.vue", () => {
     const button = wrapper.find("button"); 
     await button.trigger("click");
 
-    expect(store.removeFromWatchList).toHaveBeenCalledWith(mockShow.id);
+    expect(mockStore.removeFromWatchList).toHaveBeenCalledWith(mockShow.id);
   });
 });

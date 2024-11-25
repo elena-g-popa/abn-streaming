@@ -4,7 +4,6 @@ import HomeView from "./HomeView.vue";
 import { useTvShowStore } from "../../store/tvShowStore";
 import { filterShows, sortByRating, createSortedGroups, deduplicateShows } from "../../utils/utils";
 
-// Mocking modules
 jest.mock("vue-router", () => ({
   useRouter: jest.fn(() => ({
     push: jest.fn(),
@@ -44,7 +43,6 @@ jest.mock("../../utils/utils", () => ({
 
 describe("HomeView.vue", () => {
   let wrapper;
-  let store;
   let dropdownElement;
 
   const mockStore = {
@@ -58,7 +56,6 @@ describe("HomeView.vue", () => {
     setRecommendedShows: jest.fn(),
   };
 
-  // Setup mock store
   beforeEach(() => {
     setActivePinia(createPinia());
     useTvShowStore.mockReturnValue(mockStore);
@@ -88,6 +85,11 @@ describe("HomeView.vue", () => {
     it("calls fetchShows on mount", () => {
       expect(mockStore.fetchShows).toHaveBeenCalled();
     });
+  
+    it("renders correct number of genre groups", () => {
+      const genreGroups = wrapper.findAll(".genre-group");
+      expect(genreGroups).toHaveLength(mockStore.genres.length);
+    });
 
     it("renders genres and shows correctly", () => {
       const genres = wrapper.findAll(".genre-group");
@@ -98,8 +100,7 @@ describe("HomeView.vue", () => {
     });
   });
 
-
-
+  
   describe("Computed showsByGenre", () => {
     it("computes showsByGenre correctly and calls relevant utilities", async () => {
       wrapper.vm.searchQuery = "Show";

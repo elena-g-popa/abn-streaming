@@ -25,10 +25,10 @@ const groupedEpisodes = computed(() => {
   return seasons;
 });
 
-onMounted(async () => {
+onMounted(() => {
   const showId = route.params.id;
-  await store.fetchShowById(showId);
-  await store.fetchShowEpisodes(showId);
+  store.fetchShowById(showId);
+  store.fetchShowEpisodes(showId);
 });
 
 const sanitizeHtml = (html) => {

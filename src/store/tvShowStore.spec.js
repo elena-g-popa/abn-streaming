@@ -81,12 +81,12 @@ describe("fetchShowById", () => {
 
 describe("fetchShowEpisodes", () => {
   beforeEach(() => {
-    setActivePinia(createPinia()); // Set up a fresh Pinia instance for each test
-    jest.spyOn(console, "error").mockImplementation(() => {}); // Silence console.error
+    setActivePinia(createPinia()); 
+    jest.spyOn(console, "error").mockImplementation(() => {}); 
   });
 
   afterEach(() => {
-    jest.restoreAllMocks(); // Restore mocked functions
+    jest.restoreAllMocks(); 
   });
 
   it("should populate showEpisodes with fetched data", async () => {
@@ -111,7 +111,7 @@ describe("fetchShowEpisodes", () => {
 
     await store.fetchShowEpisodes(1);
 
-    expect(store.showEpisodes).toEqual([]); // Default empty state
+    expect(store.showEpisodes).toEqual([]); 
     expect(console.error).toHaveBeenCalledWith("Error fetching show episodes:", mockError);
   });
 });

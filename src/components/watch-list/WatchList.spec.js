@@ -40,28 +40,24 @@ jest.mock("../navigation-menu/NavigationMenu.vue", () => ({
   },
 }));
 
-describe("WatchList.vue", () => {
-  let store;
+describe("WatchList.vue - watchlist", () => {
+  let mockStore;
   let pinia;
 
   beforeEach(() => {
     pinia = createPinia();
     setActivePinia(createPinia());
 
-    store = {
+    mockStore = {
       watchList: [
         { id: 1, name: "Show 1", genres: ["Drama"] },
         { id: 2, name: "Show 2", genres: ["Comedy"] },
-        { id: 3, name: "Show 3", genres: ["Comedy"] },
-
+        { id: 3, name: "Show 3", genres: ["Comedy"] }
       ],
-      // recommendedShows: [
-      //   { id: 3, name: "Show 3", genres: ["Action"] },
-      //   { id: 4, name: "Show 4", genres: ["Comedy", "Action"] },
-      // ],
+      recommendedShows: []
     };
 
-    useTvShowStore.mockReturnValue(store);
+    useTvShowStore.mockReturnValue(mockStore);
   });
 
   afterEach(() => {
@@ -76,8 +72,45 @@ describe("WatchList.vue", () => {
     });
 
     const showCards = wrapper.findAllComponents({ name: "ShowCard" });
-    expect(showCards.length).toBe(store.watchList.length);
+    expect(showCards.length).toBe(mockStore.watchList.length);
     expect(wrapper.findAll(".watch-list-shows").length).toBe(1);
+  });
+});
+
+describe("WatchList.vue - recommended", () => {
+  let mockStore;
+  let pinia;
+
+  beforeEach(() => {
+    pinia = createPinia();
+    setActivePinia(createPinia());
+
+    mockStore = {
+      watchList:[],
+      recommendedShows: [
+        { id: 1, name: "Show 1", genres: ["Drama"] },
+        { id: 2, name: "Show 2", genres: ["Comedy"] },
+
+      ],
+    };
+
+    useTvShowStore.mockReturnValue(mockStore);
+  });
+
+  afterEach(() => {
+    jest.resetAllMocks(); 
+  });
+
+  it("renders correctly when the watch list has shows", () => {
+    const wrapper = mount(WatchList, {
+      global: {
+        plugins: [pinia], 
+      },
+    });
+
+    const showCards = wrapper.findAllComponents({ name: "ShowCard" });
+    expect(showCards.length).toBe(mockStore.recommendedShows.length);
+    expect(wrapper.findAll(".recommended-shows").length).toBe(1);
   });
 });
 
